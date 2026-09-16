@@ -143,18 +143,18 @@ function buildUrl() {
 }
 
 function proxyUrlPrimary(url) {
-  return `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`;
+  return `https://mute-art-0515.sonrightall.workers.dev/?url=${encodeURIComponent(url)}`;
 }
 
 function proxyUrlFallback(url) {
-  return `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+  return `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`;
 }
 
 async function fetchXml() {
   const url = buildUrl();
   const attempts = [
-    () => fetch(url),
     () => fetch(proxyUrlPrimary(url)),
+    () => fetch(url),
     () => fetch(proxyUrlFallback(url)),
   ];
 
